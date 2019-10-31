@@ -1,7 +1,12 @@
 <?php 
     session_start();
     if(!isset($_SESSION['login'])){
-        header ("Location: login.php");
+        echo "<script>
+                alert ('Anda harus login dulu');
+                document.location.href = 'login.php';
+
+            </script>";
+            exit;
     }
 
 
@@ -18,7 +23,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <title>Mahasiswa</title>
+    <title>Home</title>
 </head>
 <body>
     <div class="container">

@@ -71,10 +71,11 @@
 		$conn = connect_to_db();
 		$username = $_POST["username"];
 		$password = $_POST["password"];
+		$password = md5($password);
 
 
 		// ambil data dari database
-		$result = mysqli_query($conn,"SELECT * FROM admin where username = '$username'" );
+		$result = mysqli_query($conn,"SELECT * FROM pengguna where username = '$username'" );
 
 		// tampung database dalam sebuah array
 		$row = mysqli_fetch_assoc($result);

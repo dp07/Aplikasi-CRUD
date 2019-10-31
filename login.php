@@ -36,13 +36,13 @@
           <div class="form-group">
             <label for="username" class="col-sm-2 col-form-label">Username</label>
             <div class="col-sm-10">
-              <input type="text" name="username" class="form-control" id="username" placeholder="Username">
+              <input type="text" name="username" class="form-control" id="username" placeholder="Username" required="required">
             </div>
           </div>
           <div class="form-group">
             <label for="password" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-10">
-              <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+              <input type="password" name="password" class="form-control" id="password" placeholder="Password" required="required">
             </div>
           </div>
           <div class="form-group">
