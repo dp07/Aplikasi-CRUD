@@ -1,12 +1,14 @@
 <?php 
     session_start();
-    if(!isset($_SESSION['login'])){
-        echo "<script>
+    if(!isset($_SESSION['login'])){ 
+        if(!isset($_SESSION['admin'])){
+            echo "<script>
                 alert ('Anda harus login dulu');
                 document.location.href = 'login.php';
 
             </script>";
             exit;
+        } 
     }
 
 
@@ -29,11 +31,19 @@
     <div class="container">
         <div class="row bg-dark fixed-top">
             <h1 class="ml-5" style="color: red; font-weight: bold;">CRUD</h1>
-            <h6 style="margin-left: 1090px; padding-top: 10px;"><button class="btn btn-danger"><a style="font-weight: bold; text-decoration: none;" href="logout.php">Logout</a></button></h6>
+            <div style="padding-top: 25px; padding-left: 30px;"><h5><a href="index.php">Home</a></h5></div>
+            <h6 style="margin-left: 1050px; padding-top: 10px;"><button class="btn btn-danger"><a style="font-weight: bold; text-decoration: none;" href="logout.php">Logout</a></button></h6>
         </div>
         <div class="row" style="margin-top: 70px;">
             <div class="col-md-2">
-                <?php require_once ("dashboard.php");?>
+                <?php 
+                if(isset($_SESSION["admin"])){
+                   require_once ("dashboard.php"); 
+                } else {
+                    require_once ("dash_user.php");
+                }
+
+                 ?>
             </div>
             <div class="col-md-8 bg-light">
                 <?php 

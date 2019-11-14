@@ -2,12 +2,29 @@
     session_start();
     require "aplikasi.php";
 
+    if(isset($_SESSION['login'])){ 
+         echo "<script>
+                document.location.href = 'index.php';
+            </script>";
+            exit;
+    }
+
+    if(isset($_SESSION['admin'])){
+            echo "<script>
+                document.location.href = 'index.php';
+            </script>";
+            exit;
+        } 
+
     if (isset($_POST["login"])) {
       $_SESSION['username'] = $_POST['username'];
       if (login($_POST) > 0 ) {
               $_SESSION['login'] = true;
               header("Location: index.php");
-      } else {
+      } else if (loginAdmin($_POST) > 0 ) {
+              $_SESSION['admin'] = true;
+              header("Location: index.php");
+      }else {
         echo "<script>
               alert ('username atau password anda salah!!');
               </script>";
