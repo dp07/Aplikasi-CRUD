@@ -1,11 +1,9 @@
 <?php 
     session_start();
-    if(!isset($_SESSION['login'])){ 
+    if(!isset($_SESSION['user'])){ 
         if(!isset($_SESSION['admin'])){
             echo "<script>
-                alert ('Anda harus login dulu');
                 document.location.href = 'login.php';
-
             </script>";
             exit;
         } 

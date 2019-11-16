@@ -2,7 +2,18 @@
 	if(defined("IS_INDEX") == false) {
 		die('anda harus login dulu');
 	}
+	
+	if(!isset($_SESSION['admin'])){
+            echo "<script>
+            	alert ('Maaf anda tidak punya hak untuk mengakses halaman ini!!');
+                document.location.href = 'index.php';
+            </script>";
+            exit;
+        } 
+
  ?>
+
+ 
 
 <h3>Halaman Mahasiswa</h3>
 <?php 

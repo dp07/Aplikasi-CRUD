@@ -2,32 +2,23 @@
     session_start();
     require "aplikasi.php";
 
-    if(isset($_SESSION['login'])){ 
+    if(isset($_SESSION['user']) OR isset($_SESSION['admin'])){ 
          echo "<script>
                 document.location.href = 'index.php';
             </script>";
             exit;
     }
 
-    if(isset($_SESSION['admin'])){
-            echo "<script>
-                document.location.href = 'index.php';
-            </script>";
-            exit;
-        } 
-
     if (isset($_POST["login"])) {
       $_SESSION['username'] = $_POST['username'];
       if (login($_POST) > 0 ) {
-              $_SESSION['login'] = true;
+              $_SESSION['user'] = true;
               header("Location: index.php");
       } else if (loginAdmin($_POST) > 0 ) {
               $_SESSION['admin'] = true;
               header("Location: index.php");
       }else {
-        echo "<script>
-              alert ('username atau password anda salah!!');
-              </script>";
+        $err = true;
       }
     }
 
@@ -49,6 +40,11 @@
   <body>
      <div style="width: 500px; height: 655px; margin: 20px auto 0px;background-color: #eee; padding-left: 75px;">
         <h2 class="font-weight-bold" style="padding-left: 120px; font-family: arial;">Login</h2>
+    <?php 
+      if(isset($err)){
+        echo '<div style="margin-right: 75px;"class="alert alert-danger" role="alert">Username atau Password anda Salah!!</div>';
+      }
+     ?>
     <form action="" method="post">
           <div class="form-group">
             <label for="username" class="col-sm-2 col-form-label">Username</label>
