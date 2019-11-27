@@ -5,16 +5,18 @@
 
 	<?php
 	$color = ['red', 'orange', 'yellow',  'green','blue'];
-
+	
 	$data = get_rekap_asal();
-
+	var_dump($data);
 	$str_value = implode(",", array_values($data));
 
 	$i = 0;
 	foreach($data as $asal => $presentase){
 
-	$str_color[] = "window.chart.Colors.".$color[$i];
-}
+	$str_color[] = "window.chartColors.".$color[$i];
+	$str_kota[] = $asal;
+	$i++;
+	}
 	?>
 	
 	<script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
@@ -27,19 +29,15 @@
 			data: {
 				datasets: [{
 					data: [
-						20, 30, 20, 10, 20,
+						<?= $str_value; ?>
 					],
 					backgroundColor: [
-						php
+						<?= implode(",", $str_color); ?>
 					],
 					label: 'Dataset 1'
 				}],
 				labels: [
-					'Red',
-					'Orange',
-					'Yellow',
-					'Green',
-					'Blue'
+					'<?= implode("','", $str_kota); ?>'
 				]
 			},
 			options: {
